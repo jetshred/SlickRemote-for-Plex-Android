@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+   <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <ImageButton
+    android:id="@+id/fullscreen"
+    android:src="@drawable/fullscreen"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true" 
+    />
+    <Button
+    android:id="@+id/updatelib"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:text=""
+    android:background="@drawable/updatelibrary"
+    />
+ </RelativeLayout>
+  <LinearLayout android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <ImageButton
+    android:id="@+id/r_skip"
+    android:src="@drawable/r_skip"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    />
+    <ImageButton
+    android:id="@+id/stop"
+    android:src="@drawable/stop"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    />
+    <ImageButton
+    android:id="@+id/f_skip"
+    android:src="@drawable/f_skip"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    />
+ </LinearLayout>
+ <LinearLayout android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <ImageButton
+    android:id="@+id/rev"
+    android:src="@drawable/rv"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    />
+    <ImageButton
+    android:id="@+id/playpause"
+    android:src="@drawable/playpause"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    />
+    <ImageButton
+    android:id="@+id/ff"
+    android:src="@drawable/ff"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    />
+ </LinearLayout>
+<LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+<ImageView android:id="@+id/dial_top_lt" android:src="@drawable/dial_top_lt" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>
+<Button
+    android:id="@+id/up"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:text=""
+    android:background="@drawable/dial_on"
+    />
+<ImageView android:id="@+id/dial_top_right" android:src="@drawable/dial_top_rt" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>
+</LinearLayout>  
+<LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+<Button
+    android:id="@+id/left"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:text=""
+    android:background="@drawable/dial_left"
+    />
+<Button
+    android:id="@+id/select"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:text=""
+    android:background="@drawable/dial_select"
+    />
+<Button
+    android:id="@+id/right"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:text=""
+    android:background="@drawable/dial_right"
+    />
+</LinearLayout>
+<LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+<ImageView android:id="@+id/dial_btm_lt" android:src="@drawable/dial_btm_lt" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>
+<Button
+    android:id="@+id/down"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:text=""
+    android:background="@drawable/dial_down"
+    />
+<ImageView android:id="@+id/dial_btm_rt" android:src="@drawable/dial_btm_rt" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>
+</LinearLayout>    
+<RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+<Button
+    android:id="@+id/menu"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:text=""
+    android:background="@drawable/menu"
+    />   
+<Button
+    android:id="@+id/osd"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:text=""
+    android:background="@drawable/osd"
+   	android:layout_centerHorizontal="true"
+   	/>
+<Button
+        android:id="@+id/back"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:text=""
+    android:background="@drawable/back"
+   	android:layout_alignParentRight="true"
+   	/>
+</RelativeLayout>
+</LinearLayout>

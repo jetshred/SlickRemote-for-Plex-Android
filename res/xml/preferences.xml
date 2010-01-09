@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<EditTextPreference
+android:name="Server Preference"
+android:summary="Enter the IP address of your Plex server in the form - do not prefix with http://"
+android:defaultValue="0.0.0.0"
+android:title="Server IP"
+android:key="serverpref" />
+<EditTextPreference
+android:name="Port Preference"
+android:summary="Enter the web server port of your Plex server"
+android:defaultValue="3000"
+android:title="Web Server Port"
+android:key="portpref" />
+</PreferenceScreen>
