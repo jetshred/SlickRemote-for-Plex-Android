@@ -8,13 +8,13 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
-import com.flurry.android.FlurryAgent;
-
 import android.app.Activity;
 //import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,13 +66,26 @@ public class PlexRemote extends Activity{
 		host = settings.getString("serverpref", null);
 		port = settings.getString("portpref", null);
 		if (host != null && host.length() > 0) {
-		      server = String.format(user + ":" + pass + "@" + host + ":" + port);
+		      server = String.format(host + ":" + port);
 		    }
 		else {
 			server = "0.0.0.0:" + port;
 		}
         return String.format("http://" + server + "/xbmcCmds/xbmcHttp?command=");
       }
+	
+	public int time_out() {
+		settings = getPrefs();
+		try {
+			String timeout = settings.getString("timeout", null);
+			int timeoutint = Integer.parseInt(timeout);
+			return timeoutint;
+		}catch(Exception E) {
+			int timeoutint = 1000;
+			return timeoutint;
+		}
+		
+	}
 	
 	public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -83,12 +96,77 @@ public class PlexRemote extends Activity{
         
     //final AlertDialog.Builder adb = new AlertDialog.Builder(this);
     
-    final ImageButton rev = (ImageButton) findViewById(R.id.rev);
+        final ImageButton f_skip = (ImageButton) findViewById(R.id.f_skip);
+        f_skip.setOnClickListener(new ImageButton.OnClickListener() {
+        	
+    		@Override
+    		public void onClick(View v) {
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
+            	{
+            		String f_skip = getRequest() + String.format("Action(14)");
+            		HttpParams my_httpParams = new BasicHttpParams();
+                    HttpConnectionParams.setConnectionTimeout(my_httpParams,time_out());
+                    HttpConnectionParams.setSoTimeout(my_httpParams,time_out());
+                    
+                    HttpClient hc = new DefaultHttpClient(my_httpParams);
+                    HttpGet get = new HttpGet(f_skip);
+                    hc.execute(get);
+
+                
+            	}catch(Exception e){
+            		Toast msg = Toast.makeText(PlexRemote.this, "Server cannot be reached", Toast.LENGTH_SHORT);
+                    msg.setGravity(Gravity.BOTTOM, msg.getXOffset() / 2, msg.getYOffset() / 2);
+                    msg.show();
+            	}
+                
+            }
+    			
+        });
+        
+        final ImageButton r_skip = (ImageButton) findViewById(R.id.r_skip);
+        r_skip.setOnClickListener(new ImageButton.OnClickListener() {
+        	
+    		@Override
+    		public void onClick(View v) {
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
+            	{
+            		String r_skip = getRequest() + String.format("Action(15)");
+            		HttpParams my_httpParams = new BasicHttpParams();
+                    HttpConnectionParams.setConnectionTimeout(my_httpParams,time_out());
+                    HttpConnectionParams.setSoTimeout(my_httpParams,time_out());
+                    
+                    HttpClient hc = new DefaultHttpClient(my_httpParams);
+                    HttpGet get = new HttpGet(r_skip);
+                    hc.execute(get);
+
+                
+            	}catch(Exception e){
+            		Toast msg = Toast.makeText(PlexRemote.this, "Server cannot be reached", Toast.LENGTH_SHORT);
+                    msg.setGravity(Gravity.BOTTOM, msg.getXOffset() / 2, msg.getYOffset() / 2);
+                    msg.show();
+            	}
+                
+            }
+    			
+        });
+        final ImageButton rev = (ImageButton) findViewById(R.id.rev);
     rev.setOnClickListener(new ImageButton.OnClickListener() {
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String rev = getRequest() + String.format("Action(78)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -115,7 +193,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String ff = getRequest() + String.format("Action(77)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -143,7 +225,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String stop = getRequest() + String.format("Action(13)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -170,7 +256,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String playpause = getRequest() + String.format("SendKey(0xF00D)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -196,7 +286,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String back = getRequest() + String.format("SendKey(0xF01B)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -222,7 +316,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String menu = getRequest() + String.format("SendKey(0xF043)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -248,7 +346,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String osd = getRequest() + String.format("SendKey(0xF04D)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -274,7 +376,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String up = getRequest() + String.format("SendKey(0xF026)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -300,7 +406,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String down = getRequest() + String.format("SendKey(0xF028)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -327,7 +437,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String left = getRequest() + String.format("SendKey(0xF025)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -353,7 +467,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String right = getRequest() + String.format("SendKey(0xF027)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -379,7 +497,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String select = getRequest() + String.format("SendKey(0xF00D)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -405,7 +527,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String fullscreen = getRequest() + String.format("Action(199)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -434,7 +560,11 @@ public class PlexRemote extends Activity{
     	
 		@Override
 		public void onClick(View v) {
-        	try
+    			if (settings.getBoolean("haptic", true)) {
+    				Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    	            vibrator.vibrate(80);			
+        		}
+            	try
         	{
         		String updatelib = getRequest() + String.format("ExecBuiltIn&parameter=XBMC.updatelibrary(video)");
         		HttpParams my_httpParams = new BasicHttpParams();
@@ -460,12 +590,7 @@ public class PlexRemote extends Activity{
     });
     
     }
-	public void onStop()
-	{
-	   super.onStop();
-	   FlurryAgent.onEndSession(this);
-	   // your code
-	}
+	
 	
 	
 }

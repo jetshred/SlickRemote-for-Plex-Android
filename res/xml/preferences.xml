@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceCategory android:title="Server Settings">
 <EditTextPreference
 android:name="Server Preference"
 android:summary="Enter the IP address of your Plex server in the form - do not prefix with http://"
@@ -12,4 +13,14 @@ android:summary="Enter the web server port of your Plex server"
 android:defaultValue="3000"
 android:title="Web Server Port"
 android:key="portpref" />
+<EditTextPreference 
+android:summary="Set the timeout in milliseconds - Default is 1000" 
+android:title="Timeout" 
+android:key="timeout" 
+android:defaultValue="1000" 
+android:numeric="integer"/>
+</PreferenceCategory>
+<PreferenceCategory android:title="Other">
+<CheckBoxPreference android:name="Haptic" android:key="haptic" android:title="Haptic Feedback" android:summaryOn="Phone will vibrate on button press" android:defaultValue="1" android:summaryOff="Phone will not vibrate on button press" />
+</PreferenceCategory>
 </PreferenceScreen>
